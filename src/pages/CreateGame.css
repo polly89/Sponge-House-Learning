@@ -1,0 +1,13 @@
+.header-form{
+    height: 35vh;
+    background-color: #72d3f7;
+    padding-top: 2vh;
+}
+.lineForm{
+    border-top: 3px dashed #515fce;
+    margin-top: 1vh;
+}
+.p3{
+    color: #515fce;
+    margin-left: 1vw;
+}

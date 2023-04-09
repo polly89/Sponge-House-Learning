@@ -1,0 +1,52 @@
+.header-home{
+    height: 35vh;
+    background-color: #515fce;
+    padding-top: 2vh;
+    background-image: url('https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/AbbyHome.png');
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: contain;
+}
+.sub-head{
+    background-color: #fafafe;
+    height: 6vh;
+    width: 80vw;
+    border-radius: 30px;
+    display: flex;
+    justify-content:space-between;
+    margin-left: 10vw;
+}
+.logo{
+    margin-left: 4vw;
+}
+.newActBtn{
+    margin-right: 4vw;
+    margin-top: 1.25vh;
+    background-color: #515fce;
+    border-radius: 30px;
+    width: 100px;
+    height: 3.5vh;
+    color: #fafafe;
+}
+.slogan-home{
+    font-size: xx-large;
+    margin-top: 5vh;
+    margin-left: 12vw;
+    display: flex;
+    flex-direction: row;
+}
+.p1{
+    color: #fafafe;
+}
+.p2{
+    color: #FACC75;
+    margin-left: 1vw;
+}
+.lineHome{
+    border-top: 3px dashed #facc75;
+    margin-top: 1vh;
+}
+.starsHome{
+    height: 25vh;
+    margin-top: -5vh;
+}

@@ -1,0 +1,80 @@
+.header-auth{
+    height: 35vh;
+    background-color: #facc75;
+    padding-top: 2vh;
+}
+.lineAuth{
+    border-top: 3px dashed #72d3f7;
+    margin-top: 1vh;
+}
+.lowerBottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height:65vh;
+}
+.auth-form-cont{
+    width:800px;
+    height: 600px;
+    background-image:url('https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/auth-form-with-monsters.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: -40vw;
+    margin-top: -20vh;
+}
+.form-auth{
+    position: relative;
+    margin: 38%;
+    margin-top: 18%;
+}
+.email-input{
+    background-color: transparent;
+    border: none;
+    color: #fafafe;
+}
+.email-input::placeholder{
+    color:  #fafafe;
+}
+.pass-input{
+    background-color: transparent;
+    margin-top:70%;
+    border: none;
+    color: #fafafe;
+}
+.pass-input::placeholder{
+    color:  #fafafe;
+}
+.auth-btn{
+    background-color: #f6902d;
+    border-radius: 30px;
+    width: 100px;
+    height: 3.5vh;
+    color: #fafafe;
+    margin: 10px;
+    align-self: center;
+    margin-top: 10vh;
+    margin-left: 2vw;
+    margin-bottom: 0px;
+}
+.CTA{
+    width: 50vw;
+    background-image: url('https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/CATAImage.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: contain;
+    margin-left:-82vw;
+}
+.reroute-button{
+
+    margin-top: 2vh;
+    color:#fafafe;
+    text-decoration: underline;
+    background-color: transparent;
+    border: none;
+}
+.bubble{
+    width: 548px;
+    height: 323px;
+    margin-top: -20vh;
+    margin-left: 2vw;
+}
