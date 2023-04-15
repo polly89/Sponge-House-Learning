@@ -47,13 +47,12 @@
 .auth-btn{
     background-color: #f6902d;
     border-radius: 30px;
-    width: 100px;
+    width: 150px;
     height: 3.5vh;
     color: #fafafe;
     margin: 10px;
     align-self: center;
     margin-top: 10vh;
-    margin-left: 2vw;
     margin-bottom: 0px;
 }
 .CTA{
@@ -64,8 +63,9 @@
     background-size: contain;
     margin-left:-82vw;
 }
-.reroute-button{
-
+.google-sign-ing{
+    align-self: center;
+    margin-left: 1vw;
     margin-top: 2vh;
     color:#fafafe;
     text-decoration: underline;

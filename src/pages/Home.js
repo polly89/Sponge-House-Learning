@@ -1,15 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../config/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+
 import './Home.css'
 
 function Home(){
+    const navigate = useNavigate()
+    const handleClick = (e) => {
+        e.preventDefault()
+        onAuthStateChanged(auth, (currentUser)=> {
+            if(currentUser) navigate('/createGame')
+            if(!currentUser) navigate('/auth')
+        })
+    }
+
     return (
         <div>
             <div className='header-home'>
                 <div className='sub-head'>
                     <img className='logo' src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/FunLogo.png' alt='Sponge House Learning Logo'/>
-                    <Link to='/auth'>
-                        <button className='newActBtn'> + Activity </button>
-                    </Link>  
+                    <button onClick={handleClick} className='newActBtn'> + Activity </button>
                 </div>
                 <div className='slogan-home'>
                     <h1 className='p1'>Let's Make</h1>

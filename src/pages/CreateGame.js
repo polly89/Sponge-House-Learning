@@ -1,16 +1,23 @@
 import './CreateGame.css';
 import {  signOut } from 'firebase/auth';
 import { auth } from '../config/firebase';
-import { Link, useNavigate } from 'react-router-dom';
-import { FiLogOut, FiPlus } from 'react-icons/fi';
-import { useContext, useState } from 'react';
+import { Link, useNavigate} from 'react-router-dom';
+// import { FiLogOut, FiPlus } from 'react-icons/fi';
+// import { useContext, useState } from 'react';
 
-import Dropdown from '../components/Dropdown';
+// import Dropdown from '../components/Dropdown';
 
 function CreateGame(){
+    // const[name, setName] = useState('');
+    // const[backdrop, setBackdrop] = useState(null);
+    // const[audioPrompt, setAudioPrompt] = useState(null);
+    // const[answers, setAnswers] = useState()
+    const navigate = useNavigate()
+    
     const logout = async () => {
         try {
             await signOut(auth)
+            navigate('/')
         } catch (err){
             console.log(err)
         }

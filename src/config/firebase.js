@@ -3,7 +3,6 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyD8xloBMq8HcyD9Eib22HSqWuiOff3GwAI",
   authDomain: "sponge-house-learning.firebaseapp.com",
@@ -20,3 +19,4 @@ export const googleProvider = new GoogleAuthProvider();
 
 export const db = getFirestore(app)
 export const storage = getStorage(app)
+

@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { auth, googleProvider } from '../config/firebase';
-import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
+import { Link, useNavigate } from 'react-router-dom';
 import './Auth.css'
 
 const Auth = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate();
 
         console.log(auth?.currentUser?.email)
         
@@ -18,8 +19,8 @@ const Auth = () => {
             setPassword('')
             setEmail('')
         }
-        // <Navigate to='/createGame'/>
     };
+    
     const signInWithGoogle= async() => {
         try{
             await signInWithPopup(auth, googleProvider)
@@ -27,6 +28,9 @@ const Auth = () => {
             console.log(err)
         }
     }
+    onAuthStateChanged(auth, (currentUser)=> {
+        if(currentUser)navigate('/createGame')
+    });
     return (
         <div>
             <div className='header-auth'>
@@ -55,8 +59,8 @@ const Auth = () => {
                         className='pass-input'
                         />
                         <div>
-                        <button onClick={signIn} className='auth-btn' >Sign In</button>
-                        <button onClick={signInWithGoogle} className='reroute-button'>Sign in with Google</button>
+                        <button onClick={signIn} className='auth-btn' >Sign In / Register </button>
+                        <button onClick={signInWithGoogle} className='google-sign-ing'>Sign in with Google</button>
                         </div> 
                     </div>
                 </div>
