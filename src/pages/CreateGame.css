@@ -11,3 +11,38 @@
     color: #515fce;
     margin-left: 1vw;
 }
+.create-game-monster{
+    position: fixed;
+    margin-left: 0;
+    bottom:0%;
+}
+.create-game-abby{
+    position: fixed;
+    right: -5%;
+    bottom:0%;
+    z-index: -1;
+}
+.create-game-form-cont{
+    width: 40vw;
+    height: 65vh;
+    background-color: #ff5555;
+    margin-left: 31%;
+    border-radius: 5%;
+    transform: rotate(3deg);
+    margin-top: -8vh;
+    z-index: 5;
+}
+.create-game-form{
+    width: 38vw;
+    height: 60vh;
+    background-color: #fafafe;
+    border-radius: 5%;
+    transform: rotate(-4deg);
+}
+.form-arrow{
+    margin-left: 15vw;
+    margin-top: -4vh;
+}
+.line-form{
+    margin-left: .15vw;
+}

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-
+import GameCard from '../components/GameCard';
 import './Home.css'
 
 function Home(){
@@ -13,7 +13,7 @@ function Home(){
             if(!currentUser) navigate('/auth')
         })
     }
-
+      
     return (
         <div>
             <div className='header-home'>
@@ -28,6 +28,9 @@ function Home(){
                 </div>
             </div>
             <hr className='lineHome'></hr>
+            <div>
+                <GameCard/>
+            </div>
         </div>
     )
 };

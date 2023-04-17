@@ -51,7 +51,7 @@ function Dropdown({ options, value, onChange }) {
         className="flex justify-between items-center cursor-pointer"
         onClick={handleClick}
       >
-        {value?.label || 'Select...'}
+        {value?.label || 'Select a backdrop...'}
         <GoChevronDown className="text-lg" />
       </Panel>
       {isOpen && <Panel className="absolute top-full">{renderedOptions}</Panel>}
