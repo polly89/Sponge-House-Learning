@@ -1,8 +1,8 @@
 import './CreateGame.css';
-import {  signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import { auth, db, storage } from '../config/firebase';
 import { addDoc, collection } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL, list } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Link, useNavigate} from 'react-router-dom';
 import { FiUpload, FiCheck } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
@@ -11,39 +11,21 @@ import Dropdown from '../components/Dropdown';
 
 
 function CreateGame(){
+    const navigate = useNavigate()
+    const gamesCollectionRef = collection(db, 'games')
+    
     //State for db
     const[title, setTitle] = useState('');
     const[backdrop, setBackdrop] = useState('');
     const [approvedAudio, setApprovedAudio] = useState('');
     const[answers, setAnswers] = useState('');
     const [cover, setCover] = useState('');
-    const [approved, setApproved] = useState(false);
     
     //State for audio storage
     const[audio, setAudio] = useState(null);
     const [audioUrl, setAudioUrl] = useState('');
 
-    const navigate = useNavigate()
-    const gamesCollectionRef = collection(db, 'games')
-    
-    // Dropdown options for backdrop & cover
-    // const backdropOptions = [
-    //     {label: 'Build a house', value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/build-a-house-3+(1).png'},
-    //     {label: 'Feed the pig', value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/feed-the-pig.png'},
-    //     {label: 'Pick the apples', value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/pick-apples.png'},
-    // ]
-
-    // const coverOptions = [
-    //     {label: 'Purple monster with party hat.', value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+1.png'},
-    //     {label: 'Green monster with viking horns.', value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+2.png'},
-    //     {label: 'Cute monster that looks like a ram.',value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+3.png'},
-    //     {label: 'Red smarty pants monster.',value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+4.png'},
-    //     {label: 'Blue Frankenstine monster. ',value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+5.png'},
-    //     {label: 'Green alien monster.',value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+6.png'},
-    //     {label: 'Purple Stich monster.' ,value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+7.png'},
-    //     {label: 'Happy orange monster.',value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+8.png'}
-    // ]
-        
+    // Options for backdrop and cover    
     const backdropOptions = [
         {label: <img src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/build-a-house-3+(1).png' alt='Build a house' width='122px'/>, value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/build-a-house-3+(1).png'},
         {label: <img src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/feed-the-pig.png' alt='Feed the pig' width='122px'/>, value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/feed-the-pig.png'},
@@ -59,32 +41,8 @@ function CreateGame(){
         {label: <img src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+7.png' alt='cover7'width='80px'/> ,value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+7.png'},
         {label: <img src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+8.png'alt='cover8' width='80px'/>,value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Title+8.png'}
     ]
-    // BUG WITH NEW SYNTAX, OPTION DOESN'T SHOW AS SELECTED
-    const handleBackdropSelect = (option, value) => {
-        setBackdrop(option.value);
-      };
-    const handleCoverSelect = (option, value)=>{
-        setCover(option.value);
-    }
-    // Upload to db
-    const onSubmitForm = async () => {
-        try{
-            await addDoc(gamesCollectionRef, {
-            Title: title,
-            Backdrop: backdrop,
-            Answers:answers,
-            Cover: cover,
-            Audio: approvedAudio, 
-            Approved: false,
 
-        } )
-        console.log(audio)
-        } catch(err){
-            console.error(err)
-        }
-        
-    }
-    // Audio upload to storage && and url retrival for db
+    // Upload audio to storage and retrieve the url 
     let audioRef;
     const uploadAudio = async () => {
         if(!audio) return;
@@ -94,7 +52,6 @@ function CreateGame(){
             getDownloadURL(snapshot.ref).then((url)=> {
                 setAudioUrl((url))
             })
-
           } 
         )} catch(err){
             console.error(err)
@@ -104,7 +61,25 @@ function CreateGame(){
     useEffect(()=> {
         setAudioUrl(audioRef)
     }, [])
- 
+
+    // Upload game to db
+    const onSubmitForm = async () => {
+        try{
+            await addDoc(gamesCollectionRef, {
+            Title: title,
+            Backdrop: backdrop,
+            Answers:answers,
+            Cover: cover,
+            Audio: approvedAudio, 
+            Approved: false,
+        } )
+        console.log(audio)
+        } catch(err){
+            console.error(err)
+        }   
+    }
+    
+    // Logout functionality
     const logout = async () => {
         try {
             await signOut(auth)
@@ -117,9 +92,11 @@ function CreateGame(){
     <div>
         <div className='header-form'>
             <div className='sub-head'>
-                <img className='logo' src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/FunLogo.png' alt='Sponge House Learning Logo'/>
                 <Link to='/'>
-                    <button className='newActBtn'> Home </button>
+                    <img className='logo' src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/FunLogo.png' alt='Sponge House Learning Logo'style={{maxHeight: '55px', marginTop: '.5vh'}}/>
+                </Link>
+                <Link to='/'>
+                    <button className='newActBtn hover:bg-sky-500 active:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 'onClick={logout} > Logout </button>
                 </Link>
             </div>
             <div className='slogan-home'>
@@ -131,8 +108,7 @@ function CreateGame(){
         <hr className='lineForm'></hr>
         <div className='form-activity'>
             <div className='create-game-monster'>
-                {/* <img src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Create+game+monster.png' alt='Blue monster standing on a green hill' style={{maxWidth:"80%"}}/> */}
-                <button className='logout' onClick={logout}>Logout</button>
+                <img src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Create+game+monster.png' alt='Blue monster standing on a green hill' style={{maxWidth:"80%"}}/>
             </div>
             <div className='create-game-form-cont'>                    
             <div className='line-form'><img src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Vector+4.png' alt='corner vector' style={{maxWidth:"6%"}}/></div>
@@ -141,7 +117,7 @@ function CreateGame(){
                         <div>
                             <p className='underline underline-offset-8'>Step 1: Name Your Activity:</p>
                            <input 
-                            className="w-80 relative border rounded p-3 shadow bg-white w-full mt-2"
+                            className="w-80 relative border rounded p-3 shadow bg-white w-full mt-2 hover:bg-sky-200 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
                             placeholder='Ex: Fun with the Short A'
                             onChange={(e)=> setTitle(e.target.value)}
                             /> 
@@ -151,17 +127,17 @@ function CreateGame(){
                             <p className='mt-4 underline underline-offset-8'>Step 3: Upload an Audio Prompt: </p>
                             <div className='flex flex-row'>
                             <input
-                            className='w-80 relative rounded p-3 shadow bg-white w-full mt-2 text-slate-400'
+                            className='w-80 relative rounded p-3 shadow bg-white w-full mt-2 text-slate-400 hover:bg-sky-200 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'
                             type='file'
                             onChange={(e)=> setAudio(e.target.files[0])}
                             />  
-                            <FiUpload className='mt-8 ml-2 text-2xl'onClick={uploadAudio}/> 
+                            <FiUpload className='rounded-full mt-8 ml-2 text-2xl hover:bg-sky-200 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'onClick={uploadAudio}/> 
                             </div>
                             
                             <p className='mt-4 underline underline-offset-8'> Step 3: Listen & Confirm the Audio </p>
                             <div className='flex flex-row mt-4'>
-                            <audio controls src={audioUrl} /> 
-                            <FiCheck className='mt-6 ml-2 text-2xl' onClick={(e)=> setApprovedAudio(audioUrl)}
+                            <audio controls src={audioUrl} className='rounded-full hover:bg-sky-200 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300' /> 
+                            <FiCheck className='rounded-full mt-6 ml-2 text-2xl hover:bg-sky-200 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300' onClick={(e)=> setApprovedAudio(audioUrl)}
                             />
                             </div>
                         </div>
@@ -178,23 +154,21 @@ function CreateGame(){
                             <Dropdown
                             options={backdropOptions} 
                             value={backdrop} 
-                            onChange={handleBackdropSelect} 
+                            onChange={(option, value)=>setBackdrop(option.value)} 
                             />
                             <Dropdown
                             options={coverOptions} 
                             value={cover} 
-                            onChange={handleCoverSelect} 
+                            onChange={(option, value)=>setCover(option.value)} 
                             />
                         </div>
-           
                     </div>
                         <button 
                         onClick={onSubmitForm}
-                        className='publish'>Publish</button>
+                        className='publish hover:bg-sky-500 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'>Publish</button>
                     </div>
                     <div>
                     
-
                 </div>
             </div>
             <div className='create-game-abby'>
@@ -206,3 +180,7 @@ function CreateGame(){
     )
 }
 export default CreateGame;
+
+// TO DOS:
+// FIX BUG SO THAT THE OPTIONS ON THE DROPDOWN DISPLAY ONCE THEY'VE BEEN SELECTED
+// ADD REROUTE TO PUBLISH ONCE MODAL HAS BEEN CREATED

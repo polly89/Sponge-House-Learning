@@ -50,3 +50,18 @@
     height: 25vh;
     margin-top: -5vh;
 }
+.games-displayed{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left:12vw;
+    margin-top: 4vh;
+}
+.game-card{
+    flex: 1 0 21%;
+    height: 209px;
+    width: 250px;
+    flex-direction: row;
+    
+}

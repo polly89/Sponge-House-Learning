@@ -35,9 +35,11 @@ const Auth = () => {
         <div>
             <div className='header-auth'>
                 <div className='sub-head'>
-                    <img className='logo' src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/FunLogo.png' alt='Sponge House Learning Logo'/>
+                <Link to='/'>
+                    <img className='logo' src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/FunLogo.png' alt='Sponge House Learning Logo'style={{maxHeight: '55px', marginTop: '.5vh'}}/>
+                </Link>
                     <Link to='/'>
-                        <button className='newActBtn'> Home </button>
+                        <button className='newActBtn hover:bg-sky-500 active:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 '> Home </button>
                     </Link>  
                 </div>
             </div>
@@ -59,8 +61,8 @@ const Auth = () => {
                         className='pass-input'
                         />
                         <div>
-                        <button onClick={signIn} className='auth-btn' >Sign In / Register </button>
-                        <button onClick={signInWithGoogle} className='google-sign-ing'>Sign in with Google</button>
+                        <button onClick={signIn} className='auth-btn hover:bg-sky-500 active:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300' >Sign In / Register </button>
+                        <button onClick={signInWithGoogle} className='google-sign-ing rounded-md hover:bg-sky-500 active:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 '>Sign in with Google</button>
                         </div> 
                     </div>
                 </div>

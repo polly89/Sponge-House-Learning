@@ -7,6 +7,12 @@
     border-top: 3px dashed #515fce;
     margin-top: 1vh;
 }
+.logout{
+    z-index: 5;
+    /* margin-left: 7.5vw;  */
+    margin-top: -2.5vh;
+    z-index: 5;
+}
 .p3{
     color: #515fce;
     margin-left: 1vw;
@@ -52,13 +58,6 @@
 .line-form{
     margin-left: .15vw;
     z-index: 2;
-}
-.logout{
-    z-index: 5;
-    margin-left: -20vw; 
-    margin-top: 42vh;
-    position: fixed;
-    z-index: 5;
 }
 ::file-selector-button {
   display: none;
