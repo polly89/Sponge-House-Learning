@@ -1,8 +1,11 @@
 import {useState, useEffect} from 'react';
 import { db } from '../config/firebase';
 import { getDocs, collection } from 'firebase/firestore'
+import { useNavigate} from 'react-router-dom';
+
 
 function GameCard(){
+    const navigate = useNavigate()
     const [gameList, setGameList] = useState([]);
     const gamesCollectionRef = collection(db, 'games')
             
@@ -27,11 +30,10 @@ function GameCard(){
       getGameList();
     }, [])
         
-    // FIX STYLING
     return (
-            <div className='flex grid gap-10 grid-cols-3 '>
+            <div className='flex grid gap-10 grid-cols-3' >
                 {gameList.map((game)=> 
-                 <div key={game.id} style={{backgroundImage: `url(${game.Cover})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} className='game-card hover:bg-sky-200 rounded-md active:bg-violet-400 focus:outline-none focus:ring focus:ring-violet-300'> 
+                 <div onClick={()=>navigate(`/game/:${game.id}`)} key={game.id} style={{backgroundImage: `url(${game.Cover})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} className='game-card hover:bg-sky-200 rounded-md active:bg-violet-400 focus:outline-none focus:ring focus:ring-violet-300'> 
                     <h1 className='py-16 text-center text-2xl align-middle text-slate-50 underline decoration-wavy decoration-4 decoration-indigo-500/80 underline-offset-4'>{game.Title}</h1> 
                 </div>)}
             </div>
