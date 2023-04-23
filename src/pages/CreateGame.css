@@ -24,25 +24,56 @@
 }
 .create-game-form-cont{
     width: 40vw;
-    height: 65vh;
+    height: 72vh;
     background-color: #ff5555;
     margin-left: 31%;
     border-radius: 5%;
     transform: rotate(3deg);
-    margin-top: -8vh;
+    margin-top: -16vh;
     z-index: 5;
 }
 .create-game-form{
     width: 38vw;
-    height: 60vh;
+    height: 66vh;
+    padding: 4vw;
+    margin-top: -5vh;
+    margin-left: 1vw;
     background-color: #fafafe;
     border-radius: 5%;
-    transform: rotate(-4deg);
+    transform: rotate(-3.2deg);
+}
+.inputs-create-game{
+    margin-top: -3vh;
 }
 .form-arrow{
     margin-left: 15vw;
-    margin-top: -4vh;
+    margin-top: 4vh;
 }
 .line-form{
     margin-left: .15vw;
+    z-index: 2;
+}
+.logout{
+    z-index: 5;
+    margin-left: -20vw; 
+    margin-top: 42vh;
+    position: fixed;
+    z-index: 5;
+}
+::file-selector-button {
+  display: none;
+}
+/* .cover-dropdown{
+    height: 80px;
+    width: 80px;
+    overflow: scroll;
+} */
+.publish{
+    margin-right: 4vw;
+    margin-top: 2vh;
+    background-color: #515fce;
+    border-radius: 30px;
+    width: 100px;
+    height: 3.5vh;
+    color: #fafafe;
 }

@@ -1,3 +1,4 @@
+import '../index.css'
 import { useState, useEffect, useRef } from 'react';
 import { GoChevronDown } from 'react-icons/go';
 import Panel from './Panel';
@@ -36,7 +37,7 @@ function Dropdown({ options, value, onChange }) {
   const renderedOptions = options.map((option) => {
     return (
       <div
-        className="hover:bg-sky-100 rounded cursor-pointer p-1"
+        className="hover:bg-sky-100 rounded cursor-pointer p-1 "
         onClick={() => handleOptionClick(option)}
         key={option.value}
       >
@@ -46,15 +47,15 @@ function Dropdown({ options, value, onChange }) {
   });
 
   return (
-    <div ref={divEl} className="w-96 relative">
+    <div ref={divEl} className="w-64 relative">
       <Panel
         className="flex justify-between items-center cursor-pointer"
         onClick={handleClick}
       >
-        {value?.label || 'Select a backdrop...'}
+        {value?.label || 'Select a ...'}
         <GoChevronDown className="text-lg" />
       </Panel>
-      {isOpen && <Panel className="absolute top-full">{renderedOptions}</Panel>}
+      {isOpen && <Panel className="absolute top-full z-10 w-64 h-40 overflow-auto">{renderedOptions}</Panel>}
     </div>
   );
 }
