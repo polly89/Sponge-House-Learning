@@ -49,14 +49,16 @@ function Game(){
             </div>
             <div className='game-border'>
                 <img className='game-star-1'src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Star+4.png' alt='star'/>
-                <div  key={gameId}>
-                    <img className='game-cont' src={backdrop} alt='backdrop'/>
-                    <div onLoad={(e) => (audio.play())}className='audio-element'>
-                        <audio controls src={audio} className='absolute z-10 mt-4 ml-28 rotate-2 rounded-full hover:bg-sky-200 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'/>
-                    </div>
-                   {/* Replace this with an if statement so it displays components based on the game type or image url */}
-                    <BuildAHouse />
-                <img className='game-star-2'src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Star+4.png' alt='star'/>
+                <div  key={gameId} >                        
+                        <img className='game-cont' src={backdrop} alt='backdrop'/>
+                        <img className='game-star-2'src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Star+4.png' alt='star'/> 
+                        <div className='mt-40 ml-52'>
+                            <BuildAHouse />{/* Replace this with an if statement so it displays components based on the game type or image url */}
+                        </div>
+                        <div onLoad={(e) => (audio.play())} className='audio-element'>
+                            <audio controls src={audio} className='absolute z-10 mt-96 ml-28 rotate-2 rounded-full hover:bg-sky-200 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'/>
+                        </div>
+                         
                 </div> 
             </div>
          </div>

@@ -144,8 +144,8 @@ function CreateGame(){
 
                         <p className='mt-4 underline underline-offset-8'>Step 4: Add Your Answer </p>
                         <input
-                        className='w-80 relative rounded p-3 shadow bg-white w-full mt-2 '
-                        placeholder='Seperate answers with a comma!'
+                        className='w-80 relative rounded p-3 shadow bg-white w-full mt-2 hover:bg-sky-200 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'
+                        placeholder='Ex: pat'
                         value={answers}
                         onChange={(e)=> setAnswers(e.target.value)}
                         />

@@ -52,13 +52,13 @@ const Auth = () => {
                         <input 
                         placeholder='Email...'
                         onChange={(e)=> setEmail(e.target.value)}
-                        className='email-input'
+                        className='email-input hover:bg-sky-200 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'
                         />
                         <input 
                         placeholder='Password...'
                         type='password'
                         onChange={(e)=> setPassword(e.target.value)}
-                        className='pass-input'
+                        className='pass-input hover:bg-sky-200 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'
                         />
                         <div>
                         <button onClick={signIn} className='auth-btn hover:bg-sky-500 active:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300' >Sign In / Register </button>
