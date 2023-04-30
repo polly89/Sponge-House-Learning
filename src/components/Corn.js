@@ -1,9 +1,9 @@
 import { useDrag } from 'react-dnd';
 
-function Brick({id, url, options}){  
+function Corn({id, options}){  
 
     const [{isDragging}, drag] = useDrag(()=> ({
-        type:'brick', 
+        type:'corn', 
         item:{id: id},
         collect: (monitor)=> ({
             isDragging: !!monitor.isDragging(),
@@ -13,9 +13,8 @@ function Brick({id, url, options}){
         <div
         ref={drag} 
         style={{border: isDragging ? '5px solid pink' : "0px"}}>
-            <img src={url} alt='brick' className=''/>
-            <h1 className='-mt-14 text-center gap-4'>{options}</h1> 
+            <h1 className='text-5xl text-slate-100 mt-4 text-center rounded-full bg-amber-400 w-16 h-20'>{options}</h1> 
         </div>
     );
 }
-export default Brick
+export default Corn

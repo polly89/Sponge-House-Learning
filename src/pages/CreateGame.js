@@ -28,7 +28,7 @@ function CreateGame(){
     // Options for backdrop and cover    
     const backdropOptions = [
         {label: <img src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/build-a-house-3+(1).png' alt='Build a house' width='122px'/>, value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/build-a-house-3+(1).png'},
-        {label: <img src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/feed-the-pig.png' alt='Feed the pig' width='122px'/>, value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/feed-the-pig.png'},
+        {label: <img src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/feed-the-pig.png' alt='Feed the pig' width='122px'/>, value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/feed-the-pig+(1).png'},
         {label: <img src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/pick-apples.png' alt='Pick the apples' width='122px'/>, value: 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/pick-apples.png'},
     ]
     const coverOptions = [
