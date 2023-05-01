@@ -36,7 +36,7 @@ function Game(){
     };
    getGame();
     }, [])
-
+    
     return (
         <DndProvider backend={HTML5Backend}>
         <div className='page-styling'>
@@ -55,9 +55,9 @@ function Game(){
                         <img className='game-cont' src={backdrop} alt='backdrop'/>
                         <img className='game-star-2'src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Star+4.png' alt='star'/> 
                         <div className='mt-40 ml-52'>
-                            {/* <BuildAHouse answer={answer}/>Replace this with an if statement so it displays components based on the game type or image url */}
-                            {/* < FeedThePig answer={answer}/> */}
-                            < PickApples answer={answer}/>
+                            {backdrop === 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/pick-apples.png' ? (< PickApples answer={answer}/>) 
+                            : backdrop === 'https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/build-a-house-3+(1).png' ? (<BuildAHouse answer={answer}/>)
+                            : (<FeedThePig answer={answer}/>)}
                         </div>
                         <div onLoad={(e) => (audio.play())} className='audio-element'>
                             <audio controls src={audio} className='absolute z-10 mt-96 ml-28 rotate-2 rounded-full hover:bg-sky-200 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'/>
