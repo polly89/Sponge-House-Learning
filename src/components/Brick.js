@@ -14,7 +14,7 @@ function Brick({id, url, options}){
         ref={drag} 
         style={{border: isDragging ? '5px solid pink' : "0px"}}>
             <img src={url} alt='brick' className=''/>
-            <h1 className='-mt-14 text-center gap-4'>{options}</h1> 
+            <h1 className='text-5xl text-slate-100 -mt-20 text-center gap-4'>{options}</h1> 
         </div>
     );
 }

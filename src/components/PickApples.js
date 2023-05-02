@@ -1,10 +1,11 @@
 import Apples from "./Apples"
 import { useState, useEffect } from 'react';
 import { useDrop } from 'react-dnd';
+import { v4 as uuid } from 'uuid';
 
 function PickApples({ answer }){
     const [board, setBoard] = useState([]);
-    const [options, setOptions] = useState([]);
+    const [apple, setApples] = useState([]);
 
     const [{isOver}, drop] = useDrop(()=> ({
         accept:'apple',
@@ -12,68 +13,32 @@ function PickApples({ answer }){
         collect: (monitor)=> ({
             isOver: !!monitor.isOver(),
         }),
-    }), [],);
-    const option = answer.split('')
-    console.log(option)
+    }), 
+    [apple]
+    );
     
     useEffect(()=> {
-        setOptions(options)
-    }, [])
+        const options = answer.split('')
+        const apple = options
+            .map((o)=> ({ id: uuid(), text: o }))
+            .sort(() => 0.5 - Math.random());
+        setApples(apple);
+    }, [answer]);
 
 
     const addToPail = (id)=> {
-        const stackedApples= apples.filter((apple)=> id === apple.id);
-        setBoard((board)=> [...board, stackedApples[0]]);
+        console.log({ apple, id });
+        const stackedApples= apple.find((apple)=> id === apple.id);
+        setBoard((board)=> [...board, stackedApples]);
 
-    }
-    const apples = [
-        {
-            id: 1,
-            text: option[9]
-        },
-        {
-            id: 2,
-            text: option[1]
-        },
-        {
-            id: 3,
-            text: option[7]
-        },
-        {
-            id: 4,
-            text: option[3]
-        },
-        {
-            id: 5,
-            text: option[5]
-        },
-        {
-            id: 6,
-            text: option[4]
-        },
-        {
-            id: 7,
-            text: option[6]
-        },
-        {
-            id: 8,
-            text: option[2]
-        },
-        {
-            id: 9,
-            text: option[8]
-        },
-        {
-            id: 10,
-            text: option[0]
-        }
-    ]
+    };
+    
     return (
         <>
         <div 
-        className='flex gap-x-4  ml-60 z-10 absolute rotate-2 '
+        className='flex gap-x-4 mt-96 ml-60 z-10 absolute rotate-2 '
         >
-        {apples.map((apple)=>{
+        {apple.map((apple)=>{
         return <Apples  
                 id={apple.id} 
                 key={new Date().getTime() + Math.floor(Math.random() * 1000)}
@@ -81,7 +46,7 @@ function PickApples({ answer }){
                 />
         })}</div>
         <div 
-        className='flex w-3/12 h-1/5 absolute mt-48 ml-80 rotate-2 justify-center space-y-6' 
+        className='flex flex-wrap w-3/12 h-1/5 absolute mt-48 ml-80 rotate-2 justify-center space-y-6' 
         ref={drop}
         >
         {board.map((apple)=> {
