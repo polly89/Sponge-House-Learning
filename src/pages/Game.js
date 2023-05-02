@@ -8,6 +8,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import FeedThePig from '../components/FeedThePig';
 import BuildAHouse from '../components/BuildAHouse';
 import PickApples from '../components/PickApples'
+import Skeleton from '../components/Skeleton';
+
 
 function Game(){
     const { id } = useParams()
@@ -16,19 +18,22 @@ function Game(){
     const [backdrop, setBackdrop] = useState('')
     const [audio, setAudio] = useState('')
     const [answer, setAnswer] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
     const gameRef = doc(db, 'games', `${gameId}`)
     console.log(gameId)
     
     useEffect(()=> {
         const getGame = async () => {
+            setIsLoading(true);
         try {
             const docSnap = await getDoc(gameRef);
-            setGame(docSnap.data())
-            console.log('Game data:', docSnap.data())
-            setBackdrop(docSnap.data().Backdrop)
-            setAudio(docSnap.data().Audio)
-            setAnswer(docSnap.data().Answers)
+            setGame(docSnap.data());
+            console.log('Game data:', docSnap.data());
+            setBackdrop(docSnap.data().Backdrop);
+            setAudio(docSnap.data().Audio);
+            setAnswer(docSnap.data().Answers);
+            setIsLoading(false);
         } catch(err){
             console.log(err)
         }
@@ -39,6 +44,9 @@ function Game(){
     
     return (
         <DndProvider backend={HTML5Backend}>
+        {isLoading ? (
+            <Skeleton times={4} className='h-64 w-full'/>
+        ) : (
         <div className='page-styling'>
             <img className='game-circles'src='https://myawsbucketmundoimages.s3.us-east-2.amazonaws.com/Group+17.png' alt='stylized shaples, blue and yellow'/>
             <div className='sub-head'>
@@ -65,7 +73,7 @@ function Game(){
                          
                 </div> 
             </div>
-         </div>
+         </div> )}
          </DndProvider>
     )
 };
