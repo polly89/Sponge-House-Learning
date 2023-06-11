@@ -34,12 +34,13 @@
     margin-left: 12vw;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 .p1{
     color: #fafafe;
 }
 .p2{
-    color: #FACC75;
+    color: #fafafe;
     margin-left: 1vw;
 }
 .lineHome{
@@ -53,9 +54,9 @@
 .games-displayed{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin-left:12vw;
+    /* margin-left:12vw; */
     margin-top: 4vh;
 }
 .game-card{

@@ -31,7 +31,7 @@ function GameCard(){
     }, [])
         
     return (
-            <div className='flex grid gap-10 grid-cols-6' >
+            <div className='grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 place-items-center' >
                 {gameList.map((game)=> 
                  <div onClick={()=>navigate(`/game/:${game.id}`)} key={game.id} style={{backgroundImage: `url(${game.Cover})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} className='game-card hover:bg-sky-200 rounded-md active:bg-violet-400 focus:outline-none focus:ring focus:ring-violet-300'> 
                     <h1 className='py-16 text-center text-2xl align-middle text-slate-50 underline decoration-wavy decoration-4 decoration-indigo-500/80 underline-offset-4'>{game.Title}</h1> 
