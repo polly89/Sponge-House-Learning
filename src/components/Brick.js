@@ -1,4 +1,4 @@
-import { useDrag } from 'react-dnd';
+import { useDrag } from 'react-dnd'; 
 
 function Brick({id, url, options}){  
 
